@@ -57,6 +57,7 @@ public class FormenManager {
                 if (flaecheMitKategorie.containsKey("Groß")) {
                     double summegross;
                     summegross = f.getFlaeche() + flaecheMitKategorie.get("Groß");
+                    flaecheMitKategorie.put("Groß", summegross);
                 } else {
                     flaecheMitKategorie.put("Groß", f.getFlaeche());
                 }
