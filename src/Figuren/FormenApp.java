@@ -16,6 +16,8 @@ public class FormenApp {
         System.out.println(derVerwalter.getDurchschittFlaeche());
         System.out.println(derVerwalter.getMaxUmfang());
         System.out.println(derVerwalter.getFlaechenachKategorie());
+        System.out.println("----- HashMap Methode 2 - optimiert -----");
+        System.out.println(derVerwalter.getFlaecheNachKategorie2());
 
     }
 }

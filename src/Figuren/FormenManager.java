@@ -34,6 +34,28 @@ public class FormenManager {
         return alleFlaechen/count;
     }
 
+    public HashMap<String,Double> getFlaecheNachKategorie2(){   //verbesserste Methode mit Hilfsvariable zum Aufsummieren
+        double summeKlein=0;
+        double summeMittel=0;
+        double summeGross=0;
+        for(Formen f:formVerwalter){
+            if(f.getFlaeche()<1000){
+                summeKlein += f.getFlaeche();
+            }
+            if(f.getFlaeche()>=1000 && f.getFlaeche()<5000){
+                summeMittel += f.getFlaeche();
+            }
+            else {
+                summeGross += f.getFlaeche();
+            }
+        }
+        HashMap<String,Double> flaecheNachKategorie = new HashMap<>();
+        flaecheNachKategorie.put("Klein", summeKlein);
+        flaecheNachKategorie.put("Mittel", summeMittel);
+        flaecheNachKategorie.put("Groß", summeGross);
+        return flaecheNachKategorie;
+    }
+
     public HashMap<String,Double> getFlaechenachKategorie() {   //Kategorie = Klein (<1000), Mittel(1000-4999), Groß(>=5000)
         HashMap<String, Double> flaecheMitKategorie = new HashMap<>();
         for (Formen f : formVerwalter) {        //alle Formen in der ArrayList durchgehen
@@ -45,7 +67,7 @@ public class FormenManager {
                 } else {                                               //falls es in HashMap noch nicht den Key "Klein" gibt
                     flaecheMitKategorie.put("Klein", f.getFlaeche());   //kann Flächen-Wert der aktuellen Form direkt eingefügt werden
                 }
-            } else if (f.getFlaeche() >= 1000 && f.getFlaeche() < 4999) { //wie oben, schauen ob Form zur Kategorie "Mittel" gehört
+            } else if (f.getFlaeche() >= 1000 && f.getFlaeche() < 5000) { //wie oben, schauen ob Form zur Kategorie "Mittel" gehört
                 if (flaecheMitKategorie.containsKey("Mittel")) {    //dann prüfen, ob es für die Kategorie bereits einen Wert in HashMap gibt
                     double summemittel;
                     summemittel = f.getFlaeche() + flaecheMitKategorie.get("Mittel");   //wenn Wert vorhanden, dann aktuellen Flächenwert dazu summieren
