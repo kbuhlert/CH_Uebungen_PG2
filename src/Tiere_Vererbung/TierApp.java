@@ -11,7 +11,7 @@ public class TierApp {
         mietzi.walk();
 
         //Quaxi wird in Animal upgecastet
-        Animal quaxiIstAnimal = (Animal)quaxi;
+        Animal quaxiIstAnimal = (Animal)quaxi;  //(Animal) könnte in dem Fall auch weggelassen werden, da der Frosch auch ein Animal ist
         quaxi.walk();       //Quaxi läuft bei Methodenaufruf nicht wie Animal, sondern wie Frosch
         quaxi.gehSchwimmen(); //Quaxi kann Methode aufrufen, die es nur für Frösche gibt,
                             // obwohl er jetzt als Animal upgecastet wurde ist er auch noch Frosch
