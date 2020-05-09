@@ -12,10 +12,13 @@ public class House {
         rooms = new HashMap<RoomType, List<Room>>();
     }
 
-    public void addRoom (Room r, RoomType rt){
-        List<Room> roomList = new ArrayList<Room>();
+    public void addRoom (Room r){
+        List<Room> roomList;    //Warum kann ich Liste nicht bereits hier initialisieren, sondern erst in if()...
+        RoomType rt = r.getType();
         roomList = rooms.get(rt);
         if(roomList == null) {
+            roomList = new ArrayList<Room>();
+            roomList.add(r);
             rooms.put(rt,roomList);
         }else{
             roomList.add(r);
@@ -23,8 +26,23 @@ public class House {
         }
 
     public double getWindowAreaFacingOrientation (Orientation o){
-        
+        double windArea = 0;
+        for(RoomType rt:rooms.keySet()){
+            List<Room> roomList = new ArrayList<>();
+            roomList = rooms.get(rt);
+            for(Room r:roomList){
+               HashMap<Orientation, List<RoomOpening>>  zwischenMap = r.getOpenings();
+               if(zwischenMap.containsKey(o)){
+                   List<RoomOpening> zwischenListe = zwischenMap.get(o);
+                   for(RoomOpening rop :zwischenListe){
+                       if (rop instanceof Window){
+                           windArea = windArea + (rop.getHeight() * rop.getWidth());
 
-        return 0;
+                       }
+                   }
+               }
+                }
+            }
+        return windArea;
     }
 }
