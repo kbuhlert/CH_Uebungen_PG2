@@ -50,33 +50,36 @@ public class House {
 
     public int getNumberOfOpeningsinRoomType (RoomType rt){
         int numberOfOpenings = 0;
-        List<Room> alleRaumeList = rooms.get(rt);
-        for(Room r:alleRaumeList){
-            HashMap<Orientation,List<RoomOpening>> raumMitRichtungHM = r.getOpenings();
-            for(Orientation or:raumMitRichtungHM.keySet()){
-                List<RoomOpening> alleOeffnungenList = raumMitRichtungHM.get(or);
-                for (RoomOpening ro:alleOeffnungenList){
-                        numberOfOpenings++;
+        List<Room> alleRaumeList = rooms.get(rt);//Die Liste mit Räumen des eingegebenen Raumtyp wird aus der HashMap (rooms) geholt und als "alleRaumeListe" gespeichert
+        for(Room r:alleRaumeList){  //Jeder Raum aus der Liste wird einzeln durchlaufen, so dass für jeden Raum auf dessen HashMap zugegriffen werden kann
+            HashMap<Orientation,List<RoomOpening>> raumMitRichtungHM = r.getOpenings(); //neue Hashmap ist die HashMap des aufgerufenen Raumes, welche Richtung (Key) und ArrayList mit sämtlichenÖffnungen enthält
+            for(Orientation or:raumMitRichtungHM.keySet()){ //wir durchlaufen jedes Keyset einzeln und können somit auf die Liste die zu der Orientierung dazu gehört zugreifen
+                List<RoomOpening> alleOeffnungenList = raumMitRichtungHM.get(or); //neue Liste die alle Öffnungen eines Zimmers in eine Richtung enthält
+                for (RoomOpening ro:alleOeffnungenList){    //jetzt kann diese Liste einzeln für jede Öffnung durchlaufen werden
+                        numberOfOpenings++;         //jede Öffnung wird addiert, wenn alle Öffnungen einer Himmelsrichtung des Zimmertyps (rt) gezählt wurden,
+                    //geht es weiter mit der nächsten Himmelsrichtung, da werden auch alle Öffnungen dazu summiert usw. bis sämtliche Öffnungen gezählt wurden
                     }
                 }
             }
         return numberOfOpenings;
         }
 
-    public List<Room> getAllConnectedRooms(Room room){
-        List<Room> alleVerbundenenRaume = new ArrayList<Room>();
-        for(RoomType rt: rooms.keySet()){
-            List<Room> alleRaume = rooms.get(rt);
-            for(Room r:alleRaume){
-                if(r.equals(room)){
-                    for(Orientation or:r.getOpenings().keySet()){
-                        List<RoomOpening> alleOeffnungenVonRaum = r.getOpenings().get(or);
-                        for(RoomOpening ro:alleOeffnungenVonRaum){
-                            if(ro instanceof Door){
-                                if (((Door) ro).getRoom1().equals(r)){
+
+    public List<Room> getAllConnectedRooms(Room room){      //die verbundenen Räume sind in der Öffnung Door gespeichert. Wenn man also alle Türen eines Zimmers hat, kann man hieraus die Verbindungsräume ausleden
+        List<Room> alleVerbundenenRaume = new ArrayList<Room>();    //alle Verbindungsräume die zu den Türen gehören werden in dieser Liste abgelegt
+        for(RoomType rt: rooms.keySet()){                   //erst mal wird die HashMap durchlaufen, um auf die Liste, die zu den RoomTypes gehört zugreifen zu können
+            List<Room> alleRaume = rooms.get(rt);       //neue Raumliste wird aus Liste erstellt, die in der "rooms"-HashMap liegt. Rooms holt die Liste für jede einzelnen Key (Roomtype rt) rooms.get(rt);
+            for(Room r:alleRaume){      //jetzt wird die Liste genommen und auf jeden einzelnen Raum in der Liste zugegriffen
+                if(r.equals(room)){     //wenn dieser Raum der Raum ist, von dem wir die Verbindungsräume wissen wollen
+                    for(Orientation or:r.getOpenings().keySet()){   //dann wird die HashMap diesen Raumes, die die Himmelrichtung und sämtliche zugehörige Öffnungen enthält, entsprechend der Himmelsrichtung durchlaufen
+                        List<RoomOpening> alleOeffnungenVonRaum = r.getOpenings().get(or); //neue List, die alle Öffnungen einer Himmelsrichtung, des gewünschten Raumes enthält, ist gleich der Liste die in der HasMap gelegen ist
+                        for(RoomOpening ro:alleOeffnungenVonRaum){  //aus dieser Liste können jetzt alle Öffnungen (einer Himmelsrichtung) angeschaut werden
+                            if(ro instanceof Door){     //wenn die Öffnung eine Tür ist, kann der Nachbarraum der Tür angeschaut werden
+                                if (((Door) ro).getRoom1().equals(r)){  // Tür speichert 2 Räume (eigenen Raum und Nachbarraum), wenn Raum1 der eigene Raum (also der Raum zu dem
+                                    //die Verbindungsräume aufgelistet werden sollen) ist, dann wird Raum2 in die Übersichtsliste gelegt
                                     alleVerbundenenRaume.add(((Door) ro).getRoom2());}
-                                else {
-                                    alleVerbundenenRaume.add(((Door) ro).getRoom1());
+                                else {  //ansonsten (wenn also Raum1 nicht der eigene Raum ist, dann muss Raum1 der Nachbarraum sein)
+                                    alleVerbundenenRaume.add(((Door) ro).getRoom1());   //wird eben Raum1 in die Übersichtsliste gelegt
                                 }
                             }
                         }
@@ -87,5 +90,5 @@ public class House {
         return alleVerbundenenRaume;
     }
 
-    
+
 }
