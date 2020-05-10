@@ -86,4 +86,6 @@ public class House {
         }
         return alleVerbundenenRaume;
     }
+
+    
 }

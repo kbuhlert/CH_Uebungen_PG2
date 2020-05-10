@@ -1,13 +1,16 @@
 package HousePlan;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HousPlanApp {
     public static void main(String[] args) {
-        Room elternschlafz = new Room(RoomType.Bedroom, 18.7);
-        Room kinderschlafz = new Room(RoomType.Bedroom, 15.5);
-        Room kinder2schlafz = new Room(RoomType.Bedroom, 15.8);
-        Room hauptkueche = new Room(RoomType.EatInKitchen, 27.2);
-        Room flur = new Room(RoomType.Corridor, 13.2);
-        Room elternbad = new Room(RoomType.Bathroom, 8.4);
+        Room elternschlafz = new Room("Elternschlafzimmer", RoomType.Bedroom, 18.7);
+        Room kinderschlafz = new Room("Kinderschlafzimmer", RoomType.Bedroom, 15.5);
+        Room kinder2schlafz = new Room("Kinderschlafzimmer2", RoomType.Bedroom, 15.8);
+        Room hauptkueche = new Room("Küche", RoomType.EatInKitchen, 27.2);
+        Room flur = new Room("Flur", RoomType.Corridor, 13.2);
+        Room elternbad = new Room("Elternbad", RoomType.Bathroom, 8.4);
 
         elternschlafz.addOpening(Orientation.West, new Window(2.2,1.4,1.8,2.0, true));
         elternschlafz.addOpening(Orientation.West, new Window(5.2,1.4,1.8,2.0, true));
@@ -32,8 +35,14 @@ public class HousPlanApp {
         Orientation or = Orientation.West;
         RoomType rt = RoomType.Bedroom;
 
+
         System.out.println("Fensterfläche der Fenster in Richtung " + or + " : " + grueneGasse9.getWindowAreaFacingOrientation(or));
         System.out.println("Anzahl der Öffnungen des Typs " + rt + " : " + grueneGasse9.getNumberOfOpeningsinRoomType(rt));
         System.out.println("Zimmer verbunden mit " + elternschlafz + " : " + grueneGasse9.getAllConnectedRooms(elternschlafz));
+
+        for(Room r:grueneGasse9.getAllConnectedRooms(elternschlafz)){
+            System.out.println("An " + elternschlafz + " grenzt " + r);
+        }
+
     }
 }

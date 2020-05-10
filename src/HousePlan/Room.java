@@ -6,11 +6,14 @@ import java.util.List;
 
 public class Room {
 
+    private String name;
     private RoomType type;
     private double area;
     private HashMap<Orientation, List<RoomOpening>> openings;
 
-    public Room(RoomType type, double area) {
+
+    public Room(String name, RoomType type, double area) {
+        this.name = name;
         this.type = type;
         this.area = area;
         openings = new HashMap<Orientation, List<RoomOpening>>();
@@ -28,6 +31,10 @@ public class Room {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     public RoomType getType() {
         return type;
     }
@@ -42,8 +49,6 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room" +
-                "type=" + type +
-                ' ';
+        return  name;
     }
 }
