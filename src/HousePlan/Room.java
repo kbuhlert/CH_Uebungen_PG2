@@ -39,4 +39,11 @@ public class Room {
     public HashMap<Orientation, List<RoomOpening>> getOpenings() {
         return openings;
     }
+
+    @Override
+    public String toString() {
+        return "Room" +
+                "type=" + type +
+                ' ';
+    }
 }
