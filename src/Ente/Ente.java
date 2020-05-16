@@ -17,8 +17,7 @@ public abstract class Ente implements Comparable<Ente> {
 
     @Override
     public int compareTo(Ente e){
-        //noch klären warum das so nicht funktioniert (mit CHL Hase vergleichen)
-       // return gewicht.compareTo(e.gewicht);
+
         return Integer.compare(getFullWeight(), e.getFullWeight()); //Verstehe ich noch nicht?
     }
 }
