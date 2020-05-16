@@ -23,6 +23,6 @@ public abstract class Getraenk implements Brennbar {
     @Override
     public String toString() {
         return "Getraenk{" +
-                "Name: " + name + "Zutatenzahl: " + getAnzahlZutaten() + "Alkohol: " + beinhaltetAlkohol() + "Brennbar: " + brennt() + '}';
+                "Name: " + name + " /Zutatenzahl: " + getAnzahlZutaten() + " /Alkohol: " + beinhaltetAlkohol() + " /Brennbar: " + brennt() + '}';
     }
 }

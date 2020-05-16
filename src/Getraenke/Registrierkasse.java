@@ -37,8 +37,9 @@ public class Registrierkasse {
 
     public HashMap<Integer, ArrayList<Getraenk>> getGetraenkeAufgeteiltNachZutaten(){
         HashMap<Integer, ArrayList<Getraenk>> getraenkeNachZutat = new HashMap<>();
-        ArrayList<Getraenk> zwischenliste = new ArrayList<>();
+
         for(Getraenk g:registrierkasse){
+            ArrayList<Getraenk> zwischenliste = new ArrayList<>();
             if (getraenkeNachZutat.containsKey(g.getAnzahlZutaten())){
                 zwischenliste = getraenkeNachZutat.get(g.getAnzahlZutaten());
                 zwischenliste.add(g);
