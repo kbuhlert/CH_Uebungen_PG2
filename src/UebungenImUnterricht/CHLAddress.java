@@ -15,7 +15,7 @@ public class CHLAddress {
         }
 
     public String getStreet() {
-        return street;
+            return street;
     }
 
     public String getZip() {
