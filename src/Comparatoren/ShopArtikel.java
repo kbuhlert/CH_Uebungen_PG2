@@ -21,4 +21,12 @@ public class ShopArtikel {
     public String getNameB() {
         return nameB;
     }
+
+    @Override
+    public String toString() {
+        return "ShopArtikel{" +
+                "nameA='" + nameA + '\'' +
+                ", preis=" + preis +
+                '}';
+    }
 }

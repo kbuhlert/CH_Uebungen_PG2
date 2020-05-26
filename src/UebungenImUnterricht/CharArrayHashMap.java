@@ -26,7 +26,7 @@ und in einer lokalen HashMap gespeichert werden.
             String value = charMap.get(name).toString();
             System.out.println(key + " " + value);
         }*/
-        for(int key=0; key<length();++key){
+        for(int key=0; key<charMap.size();++key){
             System.out.println(charMap.get(key));
         }
     }
@@ -48,8 +48,8 @@ und in einer lokalen HashMap gespeichert werden.
 
 
 
-    public int length (){
+    /*public int length (){
         return charMap.size();
-    }
+    }*/
 
 }

@@ -6,6 +6,7 @@ public class KontoApp {
         heinzisKonto.einzahlen(200.0);
         heinzisKonto.auszahlen(300);
         heinzisKonto.auszahlen(450.0);
+
         System.out.println("----upcasten Jugenkonto in Konto ------");
         Konto heinzisEchtesKonto = (Konto)heinzisKonto;
         heinzisEchtesKonto.getKontostand();

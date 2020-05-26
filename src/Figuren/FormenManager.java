@@ -34,6 +34,30 @@ public class FormenManager {
         return alleFlaechen/count;
     }
 
+    public HashMap<String, Double> getAreaBySizeCategories() {
+        double summeKlein = 0;
+        double summeMittel = 0;
+        double summegross = 0;
+        for (Formen f : formVerwalter) {
+            if (f.getFlaeche() < 1000) {
+                summeKlein += f.getFlaeche();
+            }
+            if (f.getFlaeche() > 1000 && f.getFlaeche() < 4999) {
+                summeMittel += f.getFlaeche();
+            }
+            if (f.getFlaeche() >= 5000) {
+                summegross += f.getFlaeche();
+            }
+        }
+        HashMap<String,Double> areaBySize = new HashMap<>();
+        areaBySize.put("klein", summeKlein);
+        areaBySize.put("mittel", summeMittel);
+        areaBySize.put("klein", summegross);
+        return null;
+    }
+
+
+
     public HashMap<String,Double> getFlaecheNachKategorie2(){   //verbesserste Methode mit Hilfsvariable zum Aufsummieren
         double summeKlein=0;
         double summeMittel=0;

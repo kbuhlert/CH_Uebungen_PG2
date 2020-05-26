@@ -44,6 +44,10 @@ public class TierApp {
         System.out.println(tierliste.countColor("gelb"));
         System.out.println(tierliste.countColor("grün"));
 
+        //Casten mit Löwen, beim Casten können nicht die Methoden der Subklassen ausführen, nur der Superklassen
+        //Näheste Umsetzung der Methode wird umgesetzt und nicht die Methode der Referenz
+        //Löwe casten und dann methode roarr aufrufen geht nicht
+
     }
 
 }

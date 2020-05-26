@@ -2,8 +2,10 @@ package Comparatoren;
 
 public class Info {
 
-    //comparable:
-    // steht in der Klasse und vergleicht sich (das Objekt) mit einem anderen Objekt (compareTo)
+    //comparable-Interface:
+    // mit dem Interface werden Klassen erweitert um Referenzobjekte in Arrays und
+    // Collections sortierbar zu machen. Der Vergleich ist zwischen einem Attribut des
+    // aktuellen Objekts (this.attribut) und dem gleichen Attribut eines weiteren Objekts
 
     //Comparator:
     //sortiert Werte in Collections. Ist eigene Klasse und wird gemeinsam mit den Objekten,
